@@ -79,9 +79,9 @@ public class SecurityConfiguration {
 //                        new BasicAuthenticationFilter(authenticationManager(http)),
 //                        UsernamePasswordAuthenticationFilter.class
 //                )
-                .addFilterBefore(
-                    jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class
-                )
+//                .addFilterBefore(
+//                    jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class
+//                )
                 .build();
     }
 
