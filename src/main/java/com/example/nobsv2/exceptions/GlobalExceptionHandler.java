@@ -1,9 +1,7 @@
 package com.example.nobsv2.exceptions;
 
-import com.example.nobsv2.product.model.ErrorResponse;
-import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,15 +24,43 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(exception.getMessage());
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
+    @ExceptionHandler(CategoryNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleCategoryNotFoundException(CategoryNotFoundException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ExceptionHandler(HasProfanityException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleProductNotValidConstraints(ConstraintViolationException exception) {
-        //just returns first error, not all of them
-        //could send back all of errors if need to
-//        throw exception;
-        return new ErrorResponse(exception.getConstraintViolations().iterator().next().getMessage());
+    public ErrorResponse handleHasProfanityException(HasProfanityException exception) {
+        return new ErrorResponse(exception.getMessage());
     }
+
+    @ExceptionHandler(ProfanityApiNotWorkingException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleProfanityApiNotWorkingException(ProfanityApiNotWorkingException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleUsernameNotFoundException(UsernameNotFoundException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+//    @ExceptionHandler(ConstraintViolationException.class)
+//    @ResponseBody
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public ErrorResponse handleProductNotValidConstraints(ConstraintViolationException exception) {
+//        //just returns first error, not all of them
+//        //could send back all of errors if need to
+////        throw exception;
+//        return new ErrorResponse(exception.getConstraintViolations().iterator().next().getMessage());
+//    }
 
 
     //Can add more exceptions to be handled here

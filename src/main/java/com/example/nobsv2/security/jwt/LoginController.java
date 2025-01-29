@@ -1,6 +1,6 @@
 package com.example.nobsv2.security.jwt;
 
-import com.example.nobsv2.security.CustomUser;
+import com.example.nobsv2.security.models.CustomUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
