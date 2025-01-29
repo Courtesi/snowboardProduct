@@ -21,13 +21,11 @@ public class CacheConfiguration {
     public CacheManager cacheManager() {
         ConcurrentMapCacheManager manager = new ConcurrentMapCacheManager();
         manager.setAllowNullValues(false);
-        manager.setCacheNames(Arrays.asList("productCache"));
+        manager.setCacheNames(Arrays.asList("searchSnowboardCache"));
         return manager;
     }
 
-    @CacheEvict(value = "productCache", allEntries = true)
-    @Scheduled(fixedDelay = 1800000, initialDelay = 0)
-    public void evictProductCache() {
-        System.out.println("Evicting Product Cache");
-    }
+    @CacheEvict(value = "searchSnowboardCache", allEntries = true)
+    @Scheduled(fixedDelay = 300000, initialDelay = 0)
+    public void evictSearchSnowboardCache() {System.out.println("Evicting Search Snowboard Cache");}
 }
